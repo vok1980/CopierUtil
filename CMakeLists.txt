@@ -6,6 +6,8 @@ project (Copier)
 ##add_subdirectory (./../../../Engine/library ./Engine_lib_bin ) 
 ##include_directories (./include)
 
+include_directories ( W:/boost/boost-trunk )
+link_directories( W:/boost/boost-trunk/stage/lib )
 
 
 AUX_SOURCE_DIRECTORY( src SRC )

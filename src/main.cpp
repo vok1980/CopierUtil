@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <string.h>
 
+
+#include "help.h"
+#include "generate.h"
+#include "copy.h"
+
 //#include <vector>
 //#include <string>
 
@@ -16,9 +21,9 @@ int main(int argc, char *argv[])
 
 	if (argc > 1)
 	{
-		if ( 0 == strcmp (argv[1] , "-g")  )		
+		if ( 0 == strcmp (argv[1] , "-g") && argc > 2 )		
 		{
-			GenerateList();
+			GenerateList(argv[2]);
 		}
 		else if (0 == strcmp (argv[1] , "-c"))
 		{
