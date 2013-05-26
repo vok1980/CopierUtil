@@ -14,5 +14,3 @@ AUX_SOURCE_DIRECTORY( src SRC )
 add_executable (copier ${SRC})
 
 
-
-
