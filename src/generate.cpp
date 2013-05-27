@@ -23,7 +23,7 @@ int GenerateList( const boost::filesystem::path &dir_path, const boost::filesyst
 			std::wstring::size_type iPos = strFilePath.find(base_dir_path.generic_wstring());
 			strFilePath.erase(iPos, base_dir_path.generic_wstring().size());
 
-			std::cout << strFilePath << "\n";
+			std::cout << strFilePath << std::endl;
 		}
 	}
 
@@ -37,7 +37,7 @@ int GenerateList( const std::string &strPath )
 
 	if ( !exists( dir_path ) ) 
 	{
-		std::cerr << "Unknown path \"" << strPath << "\"";
+		std::cerr << "Unknown path \"" << strPath << "\"" << std::endl;
 		return 1;
 	}
 
