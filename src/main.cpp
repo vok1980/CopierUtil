@@ -14,11 +14,6 @@
 
 int main(int argc, char *argv[])
 {
-//	std::vector<std::string> aParams;
-
-	//while (--argc > 0)
-	//	printf("%s \n", argv[argc]);
-
 	if (argc > 1)
 	{
 		if ( 0 == strcmp (argv[1] , "-g") && argc > 2 )		
@@ -27,7 +22,11 @@ int main(int argc, char *argv[])
 		}
 		else if (0 == strcmp (argv[1] , "-c"))
 		{
-			CopyList();
+			std::string strFileList	(argv[2]);
+			std::string strSrcPath	(argv[3]);
+			std::string strDstPath	(argv[4]);
+
+			CopyList(strFileList, strSrcPath, strDstPath);
 		}
 		else
 		{
