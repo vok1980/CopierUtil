@@ -1,8 +1,9 @@
 
-#include "boost/filesystem.hpp"			// includes all needed Boost.Filesystem declarations
 #include <iostream>						// for std::cout
+#include "boost/filesystem.hpp"			// includes all needed Boost.Filesystem declarations
+
 using namespace boost::filesystem;      // for ease of tutorial presentation;
-										//  a namespace alias is preferred practice in real code
+										
 
 
 
