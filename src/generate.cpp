@@ -6,7 +6,7 @@ using namespace boost::filesystem;      // for ease of tutorial presentation;
 
 
 
-int GenerateList( const boost::filesystem::path &dir_path )
+int GenerateList( const boost::filesystem::path &dir_path, const boost::filesystem::path &base_dir_path )
 {
 	directory_iterator end_itr; // default construction yields past-the-end
 
@@ -14,11 +14,15 @@ int GenerateList( const boost::filesystem::path &dir_path )
 	{
 		if ( is_directory(itr->status()) )
 		{
-			GenerateList( *itr );
+			GenerateList( *itr, base_dir_path );
 		}
 		else
 		{
-			std::cout << itr->path().generic_string() << "\n";
+			std::wstring strFilePath = itr->path().generic_wstring();
+			std::wstring::size_type iPos = strFilePath.find(base_dir_path.generic_wstring());
+			strFilePath.erase(iPos, base_dir_path.generic_wstring().size());
+
+			std::cout << strFilePath << "\n";
 		}
 	}
 
@@ -36,7 +40,7 @@ int GenerateList( const std::string &strPath )
 		return 1;
 	}
 
-	return GenerateList(dir_path);
+	return GenerateList(dir_path, dir_path);
 }
 
 
