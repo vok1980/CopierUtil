@@ -25,7 +25,9 @@ int main(int argc, char *argv[])
 		{
 			if (argc < 5)
 			{
-				std::cerr << "Too few parameters for copy mode" << std::endl;
+				std::cerr << "Too few parameters for copy mode" << std::endl << std::endl;
+				PrintHelp();
+				return;
 			}
 
 			std::string strFileList	(argv[2]);
