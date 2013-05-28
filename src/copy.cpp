@@ -42,6 +42,7 @@ void CopyList(const std::string &strFileList, const std::string &strSrcPath, con
 	if (!fsList.is_open())
 	{
 		std::cerr << "Failed to read file \"" + strFileList + "\"" << std::endl;
+		return;
 	}
 
 #define BUF_SIZE	1024
@@ -63,6 +64,24 @@ void CopyList(const std::string &strFileList, const std::string &strSrcPath, con
 		dst_file += *it;
 		
 		//boost::system::error_code errcode;
-		copy(src_file, dst_file/*, &errcode*/);
+		try
+		{
+			path path_dest_dir = dst_file.parent_path();
+			
+			if ( !exists( path_dest_dir ) )
+			{
+				if (!create_directories(path_dest_dir))
+				{
+					std::cerr << "Failed to create directory \"" + path_dest_dir.generic_string() + "\"" << std::endl;
+					continue;
+				}
+			}
+
+			copy(src_file, dst_file/*, &errcode*/);
+		}
+		catch(...)
+		{
+			std::cerr << "Failed to copy " << src_file.string() << std::endl;
+		}
 	}
 }
