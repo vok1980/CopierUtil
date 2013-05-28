@@ -1,5 +1,7 @@
 
 #include <iostream>						// for std::cout
+#include <algorithm>
+
 #include "boost/filesystem.hpp"			// includes all needed Boost.Filesystem declarations
 
 using namespace boost::filesystem;      // for ease of tutorial presentation;
@@ -19,9 +21,13 @@ int GenerateList( const boost::filesystem::path &dir_path, const boost::filesyst
 		}
 		else
 		{
-			std::wstring strFilePath = itr->path().generic_wstring();
-			std::wstring::size_type iPos = strFilePath.find(base_dir_path.generic_wstring());
-			strFilePath.erase(iPos, base_dir_path.generic_wstring().size());
+			std::string strFilePath = itr->path().generic_string();
+			std::string::size_type iPos = strFilePath.find(base_dir_path.string());
+
+			if (-1 != iPos)
+			{
+				strFilePath.erase(iPos, base_dir_path.generic_string().size());
+			}
 
 			std::cout << strFilePath << std::endl;
 		}
@@ -33,7 +39,10 @@ int GenerateList( const boost::filesystem::path &dir_path, const boost::filesyst
 
 int GenerateList( const std::string &strPath )
 {
-	path dir_path(strPath);
+	std::string strPathInt(strPath);
+	std::replace(strPathInt.begin(), strPathInt.end(), '\\', '/');
+
+	path dir_path(strPathInt);
 
 	if ( !exists( dir_path ) ) 
 	{
