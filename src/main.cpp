@@ -1,6 +1,7 @@
 
 
 #include <stdio.h>
+#include <iostream>						// for std::cout
 #include <string.h>
 
 
@@ -22,6 +23,11 @@ int main(int argc, char *argv[])
 		}
 		else if (0 == strcmp (argv[1] , "-c"))
 		{
+			if (argc < 5)
+			{
+				std::cerr << "Too few parameters for copy mode" << std::endl;
+			}
+
 			std::string strFileList	(argv[2]);
 			std::string strSrcPath	(argv[3]);
 			std::string strDstPath	(argv[4]);
