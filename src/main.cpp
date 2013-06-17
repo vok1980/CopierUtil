@@ -8,6 +8,7 @@
 #include "help.h"
 #include "generate.h"
 #include "copy.h"
+#include "exclude.h"
 
 //#include <vector>
 //#include <string>
@@ -27,7 +28,7 @@ int main(int argc, char *argv[])
 			{
 				std::cerr << "Too few parameters for copy mode" << std::endl << std::endl;
 				PrintHelp();
-				return;
+				return 1;
 			}
 
 			std::string strFileList	(argv[2]);
@@ -35,6 +36,20 @@ int main(int argc, char *argv[])
 			std::string strDstPath	(argv[4]);
 
 			CopyList(strFileList, strSrcPath, strDstPath);
+		}
+		else if (0 == strcmp (argv[1] , "-e"))
+		{
+			if (argc < 4)
+			{
+				std::cerr << "Too few parameters for exclude mode" << std::endl << std::endl;
+				PrintHelp();
+				return 1;
+			}
+
+			std::string strBaseList	(argv[2]);
+			std::string strDiffList	(argv[3]);
+
+			ExcludeList(strBaseList, strDiffList);
 		}
 		else
 		{
